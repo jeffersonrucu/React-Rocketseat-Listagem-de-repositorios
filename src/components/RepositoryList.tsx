@@ -3,8 +3,16 @@ import { RepositoryItem } from "./RepositoryItem";
 
 import '../styles/repositories.scss';
 
+interface Repository {
+  name: string;
+  html_url: string;
+  owner: {
+    login: string
+  }
+}
+
 export function RepositoryList() {
-  const [repositories, setRepositories] = useState([]);
+  const [repositories, setRepositories] = useState<Repository[]>([]);
 
   useEffect(() => {
     fetch('https://api.github.com/users/jeffersonrucu/repos')
